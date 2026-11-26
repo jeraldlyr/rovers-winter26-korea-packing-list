@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rovers Korea Packing List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: friendly expedition checklist — clear, calm, practical for students packing at home
+   IDEA: a gear manifest tag clipped to a winter hiking pack
+   PICTURE: the checklist itself, under a light-blue band with a snowy ridge line
+   COLOUR and TYPE: white + sky blue #dff0fc fields, deep blue ink, bright blue #2f86d6 ticks; Outfit titles, Inter body
+   LAYOUT: band header with progress, sticky filter bar, section cards in one calm column (max 860px) */
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0b1a2a);
+  --sky:light-dark(#dff0fc,#12304d);
+  --sky2:light-dark(#f2f9fe,#0f2438);
+  --ink:light-dark(#10304f,#e6f2fc);
+  --muted:light-dark(#4f6c88,#9db9d3);
+  --line:light-dark(#cfe3f3,#21415f);
+  --blue:light-dark(#2f86d6,#5fb0f2);
+  --blueInk:light-dark(#ffffff,#071624);
+  --card:light-dark(#ffffff,#0f2236);
+  --snow:light-dark(#ffffff,#1a3a5a);
+  --ridge:light-dark(#b9dcf6,#1d4a73);
+}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+h1,h2{font-family:Outfit,Inter,system-ui,sans-serif;font-weight:700;margin:0;text-wrap:balance}
+html{scroll-padding-top:150px}
+
+.hero{background:var(--sky);position:relative;padding:clamp(28px,4vw,52px) max(5vw,16px) 0}
+.wrap{max-width:860px;margin:0 auto}
+.banner{display:block;width:100%;height:auto;border-radius:14px;margin:0 0 18px}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.05}
+.intro{color:var(--muted);margin:10px 0 0;font-size:15px}
+.intro li{margin:2px 0}
+.intro ul{margin:8px 0 0;padding-left:18px}
+.ridge{display:block;width:calc(100% + 2*max(5vw,16px));max-width:none;height:56px;margin:22px calc(-1*max(5vw,16px)) 0}
+
+.cd{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0 0 20px}
+.cdlab{flex:1 1 180px;font-family:Outfit,sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;font-weight:700;color:var(--ink)}
+.board{display:flex;gap:14px;align-items:flex-start;background:#1b232d;border-radius:10px;padding:10px 12px 8px;box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+.grp{display:flex;flex-direction:column;align-items:center;gap:5px}
+.flaps{display:flex;gap:4px}
+.flap{position:relative;width:34px;height:48px;border-radius:5px;background:linear-gradient(#2b3440 0 50%,#232b35 50% 100%);color:#f4f1e6;font:700 30px/48px "Roboto Mono",ui-monospace,monospace;text-align:center;box-shadow:0 2px 0 #0d1218;perspective:200px}
+.flap::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:#0d1218}
+.flap.flip{animation:flip .45s ease-out}
+@keyframes flip{0%{transform:rotateX(-90deg)}100%{transform:rotateX(0)}}
+.unit{font:700 11px "Roboto Mono",ui-monospace,monospace;color:#f5c542;letter-spacing:.08em;text-transform:uppercase}
+.prog{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.meter{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meter b{font-family:Outfit,sans-serif;font-size:28px;line-height:1;white-space:nowrap}
+.meter span{color:var(--muted);font-size:14px}
+.bar{height:8px;border-radius:8px;background:var(--sky2);margin-top:10px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:8px;transition:width .35s ease}
+
+.tools{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px max(5vw,16px)}
+.tools .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 200px;font:16px Inter,sans-serif;color:var(--ink);background:var(--sky2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+.chip{font:500 14px Inter,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:0 14px;min-height:40px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--blue);color:var(--blueInk);border-color:var(--blue)}
+.chip.ghost{background:transparent;color:var(--muted)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tools .jump{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;padding-top:8px;scrollbar-width:none}
+.jump a{flex:none;font-size:13px;color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:999px;background:var(--sky2);border:1px solid var(--line)}
+.jump a.done{color:var(--blue);border-color:var(--blue)}
+
+main{padding:22px max(5vw,16px) 60px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 18px;overflow:hidden}
+.sec header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 18px;background:var(--sky2);border-bottom:1px solid var(--line)}
+.sec h2{font-size:22px;line-height:1.15}
+.count{font-size:14px;color:var(--muted);white-space:nowrap}
+.count.all{color:var(--blue);font-weight:600}
+.secnote{font-size:14px;color:var(--muted);padding:10px 18px 0;margin:0}
+.sec ul{list-style:none;margin:0;padding:4px 0}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 14px;align-items:start;padding:12px 18px;cursor:pointer;border-top:1px solid var(--line)}
+.sec ul li:first-child .item{border-top:0}
+.item:hover{background:var(--sky2)}
+.item input{position:absolute;opacity:0;width:1px;height:1px}
+.box{width:26px;height:26px;border-radius:8px;border:2px solid var(--blue);display:grid;place-items:center;margin-top:1px;transition:background .15s}
+.box svg{width:16px;height:16px;opacity:0;transform:scale(.6);transition:.15s}
+.item input:checked + .box{background:var(--blue)}
+.item input:checked + .box svg{opacity:1;transform:none}
+.item input:focus-visible + .box{outline:3px solid var(--blue);outline-offset:2px}
+.name{font-weight:600;font-size:16px;line-height:1.35}
+.desc{grid-column:2/4;font-size:13.5px;color:var(--muted);line-height:1.45;margin-top:-2px}
+.meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.qty{font:600 14px Outfit,sans-serif;white-space:nowrap;background:var(--sky);color:var(--ink);border-radius:8px;padding:2px 9px}
+.tag{font-size:12.5px;font-weight:500;white-space:nowrap;border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted)}
+.tag.c{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tag.r{border-color:var(--blue);color:var(--blue)}
+.item.on .name{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--blue);text-decoration-thickness:2px}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.reset{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-top:28px;color:var(--muted);font-size:14px}
+.btn{font:600 14px Inter,sans-serif;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.del{display:grid;place-items:center;width:36px;height:36px;margin:-5px -8px -5px 0;border:0;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer}
+.del:hover{background:var(--sky);color:var(--ink)}
+.del svg{width:18px;height:18px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:9;display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--bg);border-radius:12px;padding:8px 8px 8px 16px;font-size:14px;box-shadow:0 6px 24px rgba(0,0,0,.2);max-width:calc(100vw - 32px)}
+.toast button{font:600 14px Inter,sans-serif;min-height:36px;padding:0 14px;border-radius:8px;border:0;background:var(--blue);color:var(--blueInk);cursor:pointer}
+.btn.warn{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.foot{text-align:center;font-size:13px;color:var(--muted);margin-top:16px}
+[hidden]{display:none!important}
+
+@media(max-width:600px){
+  .search{flex-basis:100%}.chip{flex:1}
+  .cdlab{flex-basis:100%}
+  .flap{width:30px;height:42px;font-size:26px;line-height:42px}
+  .item{grid-template-columns:auto minmax(0,1fr)}
+  .meta{grid-column:2;justify-content:flex-start;order:3}
+  .desc{grid-column:2;order:4}
+  .sec header{padding:12px 14px}.item{padding:12px 14px}
+  .meter b{font-size:24px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="wrap">
+    <img class="banner" src="banner.png" alt="NUS Rovers — Kold in Korea, 4 to 10 Jan 2027">
+    <div class="cd" id="cd" aria-live="polite">
+      <span class="cdlab">We're heading off in:</span>
+      <div class="board" role="timer">
+        <div class="grp"><div class="flaps" id="cdD"></div><span class="unit">Days</span></div>
+        <div class="grp"><div class="flaps" id="cdH"></div><span class="unit">Hours</span></div>
+      </div>
+    </div>
+    <h1>Packing List</h1>
+    <div class="intro">
+      <ul>
+        <li>Ensure that items fit within the strict weight limits. Only bring more if you have already purchased baggage allowance.</li>
+        <li>Clothing quantities include what you'll be wearing on the day.</li>
+        <li>Your ticks are saved on this device, so you can come back and carry on later.</li>
+      </ul>
+    </div>
+    <div class="prog">
+      <div class="meter"><b id="pAll">0 / 0</b> <span>items packed</span><div class="bar"><i id="bAll"></i></div></div>
+      <div class="meter"><b id="pComp">0 / 0</b> <span>compulsory packed</span><div class="bar"><i id="bComp"></i></div></div>
+    </div>
+  </div>
+  <svg class="ridge" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 56 L0 40 L90 22 L160 34 L250 8 L330 30 L420 18 L500 36 L600 4 L690 28 L770 16 L860 34 L950 12 L1040 30 L1120 20 L1200 32 L1200 56Z" fill="var(--ridge)"/>
+    <path d="M0 56 L0 48 L120 38 L220 46 L340 30 L460 44 L580 26 L700 42 L820 32 L940 46 L1060 34 L1200 44 L1200 56Z" fill="var(--bg)"/>
+    <path d="M250 8 L236 16 L246 15 L252 19 L258 14 L266 15Z M600 4 L586 13 L596 12 L602 16 L608 11 L616 12Z M950 12 L937 20 L946 19 L952 23 L958 18 L965 19Z" fill="var(--snow)"/>
+  </svg>
+</section>
+
+<nav class="tools" aria-label="Filters">
+  <div class="wrap">
+    <input id="q" class="search" type="search" placeholder="Search items…" aria-label="Search items">
+    <button class="chip" id="fTodo" aria-pressed="false">Still to pack</button>
+    <button class="chip" id="fComp" aria-pressed="false">Compulsory only</button>
+  </div>
+  <div class="wrap jump" id="jump"></div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div id="list"></div>
+    <p class="empty" id="none" hidden>Nothing matches — try clearing the search or filters.</p>
+    <div class="reset" id="resetRow">
+      <button class="btn" id="resetBtn">Untick everything</button>
+      <button class="btn" id="restoreBtn" hidden></button>
+      <span id="confirm" hidden>Clear all your ticks? <button class="btn warn" id="yes">Yes, clear</button> <button class="btn" id="no">Cancel</button></span>
+    </div>
+    <div class="toast" id="toast" role="status" hidden><span id="toastMsg"></span><button id="undo">Undo</button></div>
+    <p class="foot">Ticks are stored in this browser only — they won't sync between your phone and laptop.</p>
+  </div>
+</main>
+
+<script>
+{
+const C='Compulsory',R='Recommended',O='Optional',A='As needed';
+const DATA=[
+ {s:'Tops',items:[
+  ['Heat Tech / Merino Base Layer','3-4',C,'Necessary for hiking and in the city as it is winter. Must be rated for 0°C (expect 0°C to 5°C in the day; -1°C to -6°C at night)'],
+  ['Long Sleeved Sweater / Jacket / Hoodie','3-4',C,'Forms the second layer'],
+  ['Down / Puffer Layer','1',C,'Air insulation layer for night/snowy conditions'],
+  ['Shell Layer','1',C,'Waterproof/snowproof layer'],
+  ['Windbreaker','1',O,'Windproof'],
+  ['Sleepwear / Casual Wear','3-4',C,'Bring Rovers tee if you have. Dri-fit / cotton material (RnR + sleep wear)']]},
+ {s:'Bottoms',items:[
+  ['Heat Tech / Merino Base Layer','3-4',C,'Necessary for hiking and in the city as it is winter'],
+  ['Hiking Pants','1-2',C,'Bring 1 if rewearing. Important: make sure at least 1 pair is waterproof'],
+  ['Casual Long Pants','1-2',A,'For RnR'],
+  ['Sleepwear / Casual Wear','3-4',A,'RnR + sleep wear']]},
+ {s:'Footwear',items:[
+  ['Hiking Shoes (high cut)','1',C,'Use proper hiking shoes that are comfortable and have good grip. NO sports shoes allowed'],
+  ['Sandals / Slippers','1',A,'For walking around in hotel']]},
+ {s:'Other clothing',items:[
+  ['Underwear','8-10',C,'Recommended at least 10 sets'],
+  ['Long Socks','6-8',C,'Long socks for hiking shoes + protect against cold air'],
+  ['Hat / Cap','1',R,'Block sun glare during hikes'],
+  ['Sunglasses','1',C,'Prevent snow blindness'],
+  ['Beanie','1',C,'Prevent headache in cold and windy conditions'],
+  ['Gloves','1-2',C,'Same as clothing, must be rated for 0°C']]},
+ {s:'Toiletries',items:[
+  ['Toothbrush / Toothpaste','1',C,''],
+  ['Sunscreen','1',C,'Sunlight in winter is extremely harsh, especially with snow reflection'],
+  ['Body Soap / Shampoo','1',C,''],
+  ['Wet & Dry Tissues','2',C,''],
+  ['Bath Towel','1',O,'Will be provided by hotel'],
+  ['Hand Towel','1',O,'Will be provided by hotel'],
+  ['Feminine Sanitary Products','–',A,'']]},
+ {s:'Others',items:[
+  ['Trekking Pole','1',C,'To loan from NUS Rovers if you don\'t have'],
+  ['Poncho','1',C,'NO disposables. Purchase a high durability one from Decathlon'],
+  ['Thermometer','1',C,''],
+  ['Ziplock Bags','3',C,'For waterproofing/trash'],
+  ['Plastic Bags','3',C,'For waterproofing/trash'],
+  ['Heat Packs','4-5',R,'Cold winter weather'],
+  ['Masks','3',R,''],
+  ['Watch','1',R,''],
+  ['Umbrella','1',R,''],
+  ['Muscle Cream','1',R,''],
+  ['Asthma Inhaler','1',A,''],
+  ['Spare Glasses with Case','1',A,'']]},
+ {s:'Storage',items:[
+  ['Hiking / RnR Backpack','1',C,'Day pack 5-15L (able to hold water bottles, rain jacket & valuables). Recommended to double your hiking backpack as your day bag'],
+  ['Waterproof Cover for Hiking Bag','1',C,'In case of rain'],
+  ['Water Bottles','2',C,'Must have combined volume of at least 1L']]},
+ {s:'Electronics',items:[
+  ['Phone','1',C,''],
+  ['Charging Cable','1',C,''],
+  ['Power Bank','1',C,'Min 5000mAh'],
+  ['Local SIM Card','1',C,'Must be sufficient for all days of the trip. Ensure you can be contacted. eSIM preferred'],
+  ['Socket Adapter','1',C,'']]},
+ {s:'Documents',note:'VISA (if needed)',items:[
+  ['Passport','1',C,'Ensure that it is still valid for at least 6 months from the point of departure'],
+  ['Passport Copy','1',C,'Hardcopy'],
+  ['Card','1',C,'Card for overseas transactions and contactless payment (YouTrip, Trust, Revolut etc.)'],
+  ['Cash','–',C,'Min. SGD 200 worth of Korean Won for expenses (e.g. meals, shopping)']]}
+];
+const KEY='rovers-korea-packing-v1';
+const slug=t=>t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+DATA.forEach(sec=>{sec.id=slug(sec.s);sec.items=sec.items.map(([n,q,r,d])=>({id:sec.id+'--'+slug(n),n,q,r,d}))});
+
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){state={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+const RKEY='rovers-korea-removed-v1';
+let removed={};
+try{removed=JSON.parse(localStorage.getItem(RKEY)||'{}')||{}}catch(e){removed={}}
+const saveR=()=>{try{localStorage.setItem(RKEY,JSON.stringify(removed))}catch(e){}};
+
+const tick='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="var(--blueInk)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const bin='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10M9 9v4M11 9v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const tagCls={[C]:'c',[R]:'r',[O]:'',[A]:''};
+const list=document.getElementById('list');
+list.innerHTML=DATA.map(sec=>`
+ <section class="sec" id="${sec.id}">
+  <header><h2>${esc(sec.s)}</h2><span class="count" data-c="${sec.id}"></span></header>
+  ${sec.note?`<p class="secnote">Also: ${esc(sec.note)}</p>`:''}
+  <ul>${sec.items.map(it=>`
+   <li data-id="${it.id}" data-r="${esc(it.r)}" data-t="${esc((it.n+' '+it.d).toLowerCase())}">
+    <label class="item">
+     <input type="checkbox" id="${it.id}">
+     <span class="box">${tick}</span>
+     <span class="name">${esc(it.n)}</span>
+     <span class="meta"><span class="qty" title="Quantity">× ${esc(it.q)}</span><span class="tag ${tagCls[it.r]}">${esc(it.r)}</span>${it.r===A?`<button class="del" data-del="${it.id}" aria-label="Remove ${esc(it.n)} from my list" title="Remove from my list">${bin}</button>`:''}</span>
+     ${it.d?`<span class="desc">${esc(it.d)}</span>`:''}
+    </label>
+   </li>`).join('')}</ul>
+ </section>`).join('');
+
+document.getElementById('jump').innerHTML=DATA.map(sec=>`<a href="#${sec.id}" data-j="${sec.id}">${esc(sec.s)}</a>`).join('');
+
+const all=DATA.flatMap(s=>s.items);
+const comp=all.filter(i=>i.r===C);
+const f={todo:false,comp:false,q:''};
+
+function update(){
+  const act=all.filter(i=>!removed[i.id]), actC=comp.filter(i=>!removed[i.id]);
+  const n=act.filter(i=>state[i.id]).length, nc=actC.filter(i=>state[i.id]).length;
+  document.getElementById('pAll').textContent=`${n} / ${act.length}`;
+  document.getElementById('pComp').textContent=`${nc} / ${actC.length}`;
+  document.getElementById('bAll').style.width=(act.length?100*n/act.length:0)+'%';
+  document.getElementById('bComp').style.width=(actC.length?100*nc/actC.length:0)+'%';
+  const nr=all.length-act.length, rs=document.getElementById('restoreBtn');
+  rs.hidden=nr===0; rs.textContent=`Bring back ${nr} removed item${nr===1?'':'s'}`;
+  DATA.forEach(sec=>{
+    const si=sec.items.filter(i=>!removed[i.id]);
+    const d=si.filter(i=>state[i.id]).length, el=document.querySelector(`[data-c="${sec.id}"]`);
+    const full=si.length>0&&d===si.length;
+    el.textContent=full?`All ${d} packed ✓`:`${d} / ${si.length} packed`;
+    el.classList.toggle('all',full);
+    document.querySelector(`[data-j="${sec.id}"]`).classList.toggle('done',full);
+  });
+  filter();
+}
+function filter(){
+  let shown=0;
+  DATA.forEach(sec=>{
+    let vis=0;
+    sec.items.forEach(it=>{
+      const li=document.querySelector(`li[data-id="${it.id}"]`);
+      const ok=!removed[it.id]&&(!f.todo||!state[it.id])&&(!f.comp||it.r===C)&&(!f.q||li.dataset.t.includes(f.q));
+      li.hidden=!ok; if(ok)vis++;
+    });
+    document.getElementById(sec.id).hidden=vis===0; shown+=vis;
+  });
+  document.getElementById('none').hidden=shown>0;
+  if(shown===0&&f.todo&&!f.q){document.getElementById('none').textContent=f.comp?'All compulsory items are packed. Nice work!':'Everything is packed. See you at the airport!'}
+  else document.getElementById('none').textContent='Nothing matches — try clearing the search or filters.';
+}
+
+all.forEach(it=>{
+  const cb=document.getElementById(it.id);
+  cb.checked=!!state[it.id];
+  cb.closest('.item').classList.toggle('on',cb.checked);
+  cb.addEventListener('change',()=>{
+    if(cb.checked)state[it.id]=1;else delete state[it.id];
+    cb.closest('.item').classList.toggle('on',cb.checked);
+    save();update();
+  });
+});
+
+const tg=(id,k)=>{const b=document.getElementById(id);b.addEventListener('click',()=>{f[k]=!f[k];b.setAttribute('aria-pressed',f[k]);filter()})};
+tg('fTodo','todo');tg('fComp','comp');
+document.getElementById('q').addEventListener('input',e=>{f.q=e.target.value.trim().toLowerCase();filter()});
+
+const toast=document.getElementById('toast');let lastDel=null,toastT=0;
+list.addEventListener('click',e=>{
+  const b=e.target.closest('[data-del]'); if(!b)return;
+  e.preventDefault();e.stopPropagation();
+  const id=b.dataset.del, it=all.find(i=>i.id===id);
+  lastDel={id,was:!!state[id]};
+  removed[id]=1; delete state[id];
+  const cb=document.getElementById(id); cb.checked=false; cb.closest('.item').classList.remove('on');
+  save();saveR();update();
+  document.getElementById('toastMsg').textContent=`Removed ${it.n}`;
+  toast.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>{toast.hidden=true},6000);
+});
+document.getElementById('undo').addEventListener('click',()=>{
+  if(!lastDel)return;
+  delete removed[lastDel.id];
+  if(lastDel.was){state[lastDel.id]=1;const cb=document.getElementById(lastDel.id);cb.checked=true;cb.closest('.item').classList.add('on')}
+  lastDel=null;save();saveR();update();toast.hidden=true;
+});
+document.getElementById('restoreBtn').addEventListener('click',()=>{removed={};saveR();update();toast.hidden=true});
+
+const rb=document.getElementById('resetBtn'),cf=document.getElementById('confirm');
+rb.addEventListener('click',()=>{rb.hidden=true;cf.hidden=false;document.getElementById('no').focus()});
+document.getElementById('no').addEventListener('click',()=>{rb.hidden=false;cf.hidden=true});
+document.getElementById('yes').addEventListener('click',()=>{
+  state={};save();
+  all.forEach(it=>{const cb=document.getElementById(it.id);cb.checked=false;cb.closest('.item').classList.remove('on')});
+  rb.hidden=false;cf.hidden=true;update();
+});
+
+update();
+
+const DEP=Date.UTC(2027,0,3,16,0,0); // 4 Jan 2027 00:00 Singapore time (UTC+8)
+const cd=document.getElementById('cd');
+function setFlaps(el,str){
+  while(el.children.length<str.length){const s=document.createElement('span');s.className='flap';el.prepend(s)}
+  while(el.children.length>str.length)el.firstElementChild.remove();
+  [...str].forEach((ch,i)=>{const f=el.children[i];if(f.textContent!==ch){f.textContent=ch;f.classList.remove('flip');void f.offsetWidth;f.classList.add('flip')}});
+}
+function countdown(){
+  const ms=DEP-Date.now();
+  if(ms<=0){cd.innerHTML='<span class="cdlab">It\'s trip time — see you in Korea!</span>';return}
+  const hrs=Math.floor(ms/3600000);
+  setFlaps(document.getElementById('cdD'),String(Math.floor(hrs/24)).padStart(2,'0'));
+  setFlaps(document.getElementById('cdH'),String(hrs%24).padStart(2,'0'));
+  cd.setAttribute('aria-label',`We're heading off in ${Math.floor(hrs/24)} days and ${hrs%24} hours`);
+}
+countdown();
+const cdTimer=setInterval(countdown,30000);
+}
+</script>
+</body>
+</html>
